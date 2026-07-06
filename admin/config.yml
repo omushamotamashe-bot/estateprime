@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: omushamotamashe-bot/estateprime
+  name: git-gateway
   branch: main
-  site_domain: cozy-cendol-2c0fbf.netlify.app   # <-- ADD THIS LINE
 
 media_folder: "images"
 public_folder: "/images"
