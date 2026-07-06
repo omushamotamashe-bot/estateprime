@@ -79,8 +79,8 @@
   <section id="page-home" class="page active">
     <div class="hero">
       <div class="hero-content">
-        <h1><i class="fas fa-building"></i> Find your <br />dream property</h1>
-        <p>Elegant homes, exclusive listings, and trusted guidance.</p>
+        <h1 id="home-headline"><i class="fas fa-building"></i> Loading...</h1>
+        <p id="home-subtitle">Loading...</p>
         <div style="display: flex; gap: 14px; flex-wrap: wrap;">
           <a onclick="showPage('list')" class="btn-solid" style="padding: 14px 36px; border-radius: 40px; background: #1e1e1e; color: white; text-decoration: none;">List a Home</a>
           <a onclick="showPage('loan')" style="padding: 14px 36px; border-radius: 40px; border: 1.5px solid #1e1e1e; text-decoration: none; color: #1e1e1e;">Loan Help</a>
@@ -89,9 +89,9 @@
       <div class="hero-image"><i class="fas fa-home"></i></div>
     </div>
     <div class="feature-grid">
-      <div class="feature-item"><i class="fas fa-map-pin"></i><h3>Prime locations</h3><p>Curated neighborhoods with character.</p></div>
-      <div class="feature-item"><i class="fas fa-hand-holding-heart"></i><h3>Trusted service</h3><p>Personalized support from experts.</p></div>
-      <div class="feature-item"><i class="fas fa-camera"></i><h3>Virtual tours</h3><p>Walk through before you visit.</p></div>
+      <div class="feature-item"><i class="fas fa-map-pin"></i><h3 id="feature1-title">Loading...</h3><p id="feature1-text">Loading...</p></div>
+      <div class="feature-item"><i class="fas fa-hand-holding-heart"></i><h3 id="feature2-title">Loading...</h3><p id="feature2-text">Loading...</p></div>
+      <div class="feature-item"><i class="fas fa-camera"></i><h3 id="feature3-title">Loading...</h3><p id="feature3-text">Loading...</p></div>
     </div>
   </section>
 
@@ -223,14 +223,11 @@
 </footer>
 
 <script>
-  // PAGE NAVIGATION - WORKS PERFECTLY
+  // PAGE NAVIGATION
   function showPage(pageId) {
-    // Hide all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // Show the selected page
     const target = document.getElementById('page-' + pageId);
     if (target) target.classList.add('active');
-    // Clear feedback messages
     ['contactFeedback','loginFeedback','registerFeedback','listFeedback','loanFeedback'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.innerHTML = '';
@@ -273,7 +270,34 @@
     setTimeout(() => document.getElementById('loanFeedback').innerHTML = '', 5000);
   }
 
-  // Make functions global
+  // ==========================================
+  // LOAD CONTENT FROM JSON FILE (CMS SUPPORT)
+  // ==========================================
+  fetch('_data/home.json')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('home-headline').innerHTML = `<i class="fas fa-building"></i> ${data.headline}`;
+      document.getElementById('home-subtitle').textContent = data.subtitle;
+      document.getElementById('feature1-title').textContent = data.feature1_title;
+      document.getElementById('feature1-text').textContent = data.feature1_text;
+      document.getElementById('feature2-title').textContent = data.feature2_title;
+      document.getElementById('feature2-text').textContent = data.feature2_text;
+      document.getElementById('feature3-title').textContent = data.feature3_title;
+      document.getElementById('feature3-text').textContent = data.feature3_text;
+    })
+    .catch(error => {
+      console.error('Error loading content:', error);
+      // Fallback text if JSON fails to load
+      document.getElementById('home-headline').innerHTML = '<i class="fas fa-building"></i> Find your dream property';
+      document.getElementById('home-subtitle').textContent = 'Elegant homes, exclusive listings, and trusted guidance.';
+      document.getElementById('feature1-title').textContent = 'Prime locations';
+      document.getElementById('feature1-text').textContent = 'Curated neighborhoods with character.';
+      document.getElementById('feature2-title').textContent = 'Trusted service';
+      document.getElementById('feature2-text').textContent = 'Personalized support from experts.';
+      document.getElementById('feature3-title').textContent = 'Virtual tours';
+      document.getElementById('feature3-text').textContent = 'Walk through before you visit.';
+    });
+
   window.showPage = showPage;
   window.handleContact = handleContact;
   window.handleLogin = handleLogin;
