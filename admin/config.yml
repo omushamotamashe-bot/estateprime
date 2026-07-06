@@ -6,14 +6,16 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-      - name: "home"
-        label: "Home Page"
-        file: "_data/home.json"
-        fields:
-          - { label: "Headline", name: "headline", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Feature 1 Title", name: "feature1_title", widget: "string" }
-          - { label: "Feature 1 Text", name: "feature1_text", widget: "text" }
+  - name: "home"
+    label: "Home Page"
+    folder: "_data/home"
+    create: false
+    fields:
+      - { label: "Headline", name: "headline", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "text" }
+      - { label: "Feature 1 Title", name: "feature1_title", widget: "string" }
+      - { label: "Feature 1 Text", name: "feature1_text", widget: "text" }
+      - { label: "Feature 2 Title", name: "feature2_title", widget: "string" }
+      - { label: "Feature 2 Text", name: "feature2_text", widget: "text" }
+      - { label: "Feature 3 Title", name: "feature3_title", widget: "string" }
+      - { label: "Feature 3 Text", name: "feature3_text", widget: "text" }
