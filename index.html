@@ -306,5 +306,21 @@
   window.handleLoan = handleLoan;
 </script>
 
+  <!-- Netlify Identity Widget -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  // This initializes the widget
+  window.netlifyIdentity = window.netlifyIdentity || {};
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => {
+        document.location.href = '/admin/';
+      });
+    }
+  });
+  // Auto-open the widget if user is not logged in
+  netlifyIdentity.init();
+</script>
+
 </body>
 </html>
