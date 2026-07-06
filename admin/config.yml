@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: omushamotamashe-bot/estateprime # Replace with your username and repo name!
+  branch: main # The branch you want to use for your site
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "_data/home.json"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Feature 1 Title", name: "feature1_title", widget: "string" }
+          - { label: "Feature 1 Text", name: "feature1_text", widget: "text" }
