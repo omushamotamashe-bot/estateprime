@@ -1,7 +1,8 @@
 backend:
   name: github
-  repo: omushamotamashe-bot/estateprime # Replace with your username and repo name!
-  branch: main # The branch you want to use for your site
+  repo: omushamotamashe-bot/estateprime
+  branch: main
+  site_domain: cozy-cendol-2c0fbf.netlify.app   # <-- ADD THIS LINE
 
 media_folder: "images"
 public_folder: "/images"
